@@ -49,6 +49,9 @@ body{
                 }
             }
             .itens-pesquisa{
+                position: absolute;
+                width: 70%;
+                max-width: 500px;
                 .item-pesquisa{
                     border: 1px solid black;
                     border-top: none;
@@ -73,34 +76,39 @@ body{
                 }
             }
         }
-        .autocomplete-items{
-            width: 100%;
-            border: 1px solid black;
-            border-top: none;
-            overflow: hidden;
-            border-top: none;
-            font-size: 0.8em;
-            margin: 0 auto;
-            left: 0;
-            right: 0;
-            color: black;
-            &:nth-last-child(1){
-                border-radius: 0 0 7px 7px;
+    }
+    .pokemon-info{
+        width: 70%;
+        margin: 0 auto;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 2%;
+        .info-esq{
+            background: lighten($corFundo, 7);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            img{
+                height: 80%;
             }
         }
-        .autocomplete-items div {
-            padding: 10px;
-            cursor: pointer;
-            background-color: white;
-        }
-        .autocomplete-items div:hover {
-            /*when hovering an item:*/
-            background-color: darken(white, 7);
-        }
-        .autocomplete-active {
-            /*when navigating through the items using the arrow keys:*/
-            background-color: DodgerBlue !important;
-            color: #ffffff;
+        .info-dir{
+            .sessao-info{
+                text-align: left;
+                margin-bottom: 30px;
+                .tipos{
+                    display: flex;
+                    margin: 3px;
+                    .tipo{
+                        background: lightcoral;
+                        padding: 5px 10px;
+                        margin-right: 10px;
+                        border-radius: 7px;
+                    }
+                }
+            }
         }
     }
 }

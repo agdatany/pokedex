@@ -2,7 +2,6 @@ var listaPokemons = [];
 var barraAberta = false;
 
 async function pegarListaPokemons(){
-    let todosPokemons;
     await fetch("https://pokeapi.co/api/v2/pokemon/?limit=10000")
         .then(response => response.json())
         .then(data => {
@@ -13,6 +12,11 @@ async function pegarListaPokemons(){
             }
         })
         .catch(erro => console.log(erro));
+}
+
+async function pegarPokemonInfo(pokemon){
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`);
+    return response.json();
 }
 
 function capitalize(string) {
@@ -33,6 +37,15 @@ function limparPesquisa(){
     $('.item-pesquisa').remove();
 }
 
+function sortearNumeros(){
+    let numeros_aleatorios = [];
+    for(var i = 0; i < 5; i++){
+        numeros_aleatorios.push(Math.floor(Math.random() * (listaPokemons.length)));
+    }
+
+    return numeros_aleatorios;
+}
+
 // Abrir barra de pesquisa clicando nela
 $('#inputSearchPokemon').on('click', async function(){
     if(listaPokemons.length == 0){
@@ -46,14 +59,10 @@ $('#inputSearchPokemon').on('click', async function(){
     abrirPesquisa();
 
     $('.barra-de-pesquisa').after('<div class="itens-pesquisa"></div>');
-    
-    // Aleatorizando o número do pokemon que vai aparecer
-    let numeros_aleatorios = [];
-    for(var i = 0; i < 5; i++){
-        numeros_aleatorios.push(Math.floor(Math.random() * (listaPokemons.length)));
-    }
 
     // Colocando as divs da barra da pesquisa
+    var numeros_aleatorios = sortearNumeros();
+
     for(var i = 0; i < 5; i++){
         $('.itens-pesquisa').append(`<div class="item-pesquisa">${capitalize(listaPokemons[numeros_aleatorios[i]])}</div>`);
     }
@@ -67,6 +76,14 @@ $('#inputSearchPokemon').on('keyup', function(){
     let inputFiltro = $('#inputSearchPokemon').val();
 
     limparPesquisa();
+
+    if(inputFiltro.length == 0){
+        var numeros_aleatorios = sortearNumeros();
+        for(var i = 0; i < 5; i++){
+            $('.itens-pesquisa').append(`<div class="item-pesquisa">${capitalize(listaPokemons[numeros_aleatorios[i]])}</div>`);
+        }
+        return false;
+    }
 
     listaPokemons.forEach(item => {
         if(item.toLowerCase().startsWith(inputFiltro.toLowerCase())){
@@ -82,6 +99,18 @@ $('#inputSearchPokemon').on('keyup', function(){
         if(i <= listaFiltrada.length){
             $('.itens-pesquisa').append(`<div class="item-pesquisa">${listaFiltrada[i - 1]}</div>`);
         }
+    }
+});
+
+// Colocar seleção por teclado depois para pesquisar o selecionado caso haja
+$('#btnSearchPokemon').on('click', function(e){
+    e.preventDefault();
+});
+
+// Clicou em um pokemon da barra de pesquisa
+$('.pesquisa').on('click', async function(event){
+    if($(event.target).hasClass('item-pesquisa')){
+        let infoPokemon = await pegarPokemonInfo($(event.target).text());
     }
 });
 

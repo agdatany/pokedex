@@ -56,6 +56,12 @@ body form .pesquisa .barra-de-pesquisa #btnSearchPokemon {
   cursor: pointer;
 }
 
+body form .pesquisa .itens-pesquisa {
+  position: absolute;
+  width: 70%;
+  max-width: 500px;
+}
+
 body form .pesquisa .itens-pesquisa .item-pesquisa {
   border: 1px solid black;
   border-top: none;
@@ -80,37 +86,52 @@ body form .pesquisa .itens-pesquisa .sem-resultado:hover {
   background: white;
 }
 
-body form .autocomplete-items {
-  width: 100%;
-  border: 1px solid black;
-  border-top: none;
-  overflow: hidden;
-  border-top: none;
-  font-size: 0.8em;
+body .pokemon-info {
+  width: 70%;
   margin: 0 auto;
-  left: 0;
-  right: 0;
-  color: black;
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 2%;
 }
 
-body form .autocomplete-items:nth-last-child(1) {
-  border-radius: 0 0 7px 7px;
+body .pokemon-info .info-esq {
+  background: #3e3a3c;
+  border-radius: 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-body form .autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: white;
+body .pokemon-info .info-esq img {
+  height: 80%;
 }
 
-body form .autocomplete-items div:hover {
-  /*when hovering an item:*/
-  background-color: #ededed;
+body .pokemon-info .info-dir .sessao-info {
+  text-align: left;
+  margin-bottom: 30px;
 }
 
-body form .autocomplete-active {
-  /*when navigating through the items using the arrow keys:*/
-  background-color: DodgerBlue !important;
-  color: #ffffff;
+body .pokemon-info .info-dir .sessao-info .tipos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 3px;
+}
+
+body .pokemon-info .info-dir .sessao-info .tipos .tipo {
+  background: lightcoral;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 7px;
 }
 /*# sourceMappingURL=style.css.map */
