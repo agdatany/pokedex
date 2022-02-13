@@ -1,0 +1,106 @@
+$corFundo: #2c292a;
+
+*, *:after, *:before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    background: $corFundo;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    img#logo{
+        height: 230px;
+    }
+    form{
+        .pesquisa{
+            width: 70%;
+            margin: 0 auto;
+            max-width: 500px;
+            .barra-de-pesquisa{
+                margin: 0 auto;
+                display: flex;
+                #inputSearchPokemon{
+                    width: calc(100% - 45px);
+                    height: 45px;
+                    border-radius: 7px 0 0 7px;
+                    outline: none;
+                    border: 1px solid black;
+                    border-right: none;
+                    font-weight: 300;
+                    font-size: 0.8em;
+                    padding: 10px;
+                    max-width: 500px;
+                }
+                #btnSearchPokemon{
+                    width: 45px;
+                    height: 45px;
+                    padding: 10px;
+                    color: white;
+                    background: red;
+                    font-size: 17px;
+                    border: 1px solid black;
+                    border-left: none;
+                    border-radius: 0 7px 7px 0;
+                    cursor: pointer;
+                }
+            }
+            .itens-pesquisa{
+                .item-pesquisa{
+                    border: 1px solid black;
+                    border-top: none;
+                    border-bottom: none;
+                    background: white;
+                    padding: 5px;
+                    color: black;
+                    font-weight: 300;
+                    font-size: 0.8em;
+                    &:hover{
+                        background: darken(white, 7);
+                    }
+                    &:nth-last-child(1){
+                        border-radius: 0px 0 7px 7px;
+                        border-bottom: none;
+                    }
+                }
+                .sem-resultado{
+                    &:hover{
+                        background: white;
+                    }
+                }
+            }
+        }
+        .autocomplete-items{
+            width: 100%;
+            border: 1px solid black;
+            border-top: none;
+            overflow: hidden;
+            border-top: none;
+            font-size: 0.8em;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            color: black;
+            &:nth-last-child(1){
+                border-radius: 0 0 7px 7px;
+            }
+        }
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: white;
+        }
+        .autocomplete-items div:hover {
+            /*when hovering an item:*/
+            background-color: darken(white, 7);
+        }
+        .autocomplete-active {
+            /*when navigating through the items using the arrow keys:*/
+            background-color: DodgerBlue !important;
+            color: #ffffff;
+        }
+    }
+}

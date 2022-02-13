@@ -1,0 +1,116 @@
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  background: #2c292a;
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+body img#logo {
+  height: 230px;
+}
+
+body form .pesquisa {
+  width: 70%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+body form .pesquisa .barra-de-pesquisa {
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body form .pesquisa .barra-de-pesquisa #inputSearchPokemon {
+  width: calc(100% - 45px);
+  height: 45px;
+  border-radius: 7px 0 0 7px;
+  outline: none;
+  border: 1px solid black;
+  border-right: none;
+  font-weight: 300;
+  font-size: 0.8em;
+  padding: 10px;
+  max-width: 500px;
+}
+
+body form .pesquisa .barra-de-pesquisa #btnSearchPokemon {
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  color: white;
+  background: red;
+  font-size: 17px;
+  border: 1px solid black;
+  border-left: none;
+  border-radius: 0 7px 7px 0;
+  cursor: pointer;
+}
+
+body form .pesquisa .itens-pesquisa .item-pesquisa {
+  border: 1px solid black;
+  border-top: none;
+  border-bottom: none;
+  background: white;
+  padding: 5px;
+  color: black;
+  font-weight: 300;
+  font-size: 0.8em;
+}
+
+body form .pesquisa .itens-pesquisa .item-pesquisa:hover {
+  background: #ededed;
+}
+
+body form .pesquisa .itens-pesquisa .item-pesquisa:nth-last-child(1) {
+  border-radius: 0px 0 7px 7px;
+  border-bottom: none;
+}
+
+body form .pesquisa .itens-pesquisa .sem-resultado:hover {
+  background: white;
+}
+
+body form .autocomplete-items {
+  width: 100%;
+  border: 1px solid black;
+  border-top: none;
+  overflow: hidden;
+  border-top: none;
+  font-size: 0.8em;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  color: black;
+}
+
+body form .autocomplete-items:nth-last-child(1) {
+  border-radius: 0 0 7px 7px;
+}
+
+body form .autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: white;
+}
+
+body form .autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #ededed;
+}
+
+body form .autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+/*# sourceMappingURL=style.css.map */
