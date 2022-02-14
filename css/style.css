@@ -7,8 +7,8 @@
 }
 
 body {
-  background: #2c292a;
-  color: white;
+  background: #ebebeb;
+  color: #121212;
   font-size: 1.5em;
   text-align: center;
 }
@@ -35,7 +35,7 @@ body form .pesquisa .barra-de-pesquisa #inputSearchPokemon {
   height: 45px;
   border-radius: 7px 0 0 7px;
   outline: none;
-  border: 1px solid black;
+  border: 1px solid #121212;
   border-right: none;
   font-weight: 300;
   font-size: 0.8em;
@@ -47,10 +47,10 @@ body form .pesquisa .barra-de-pesquisa #btnSearchPokemon {
   width: 45px;
   height: 45px;
   padding: 10px;
-  color: white;
-  background: red;
+  color: #ebebeb;
+  background: #d21819;
   font-size: 17px;
-  border: 1px solid black;
+  border: 1px solid #121212;
   border-left: none;
   border-radius: 0 7px 7px 0;
   cursor: pointer;
@@ -63,12 +63,12 @@ body form .pesquisa .itens-pesquisa {
 }
 
 body form .pesquisa .itens-pesquisa .item-pesquisa {
-  border: 1px solid black;
+  border: 1px solid #121212;
   border-top: none;
   border-bottom: none;
   background: white;
   padding: 5px;
-  color: black;
+  color: #121212;
   font-weight: 300;
   font-size: 0.8em;
 }
@@ -79,7 +79,7 @@ body form .pesquisa .itens-pesquisa .item-pesquisa:hover {
 
 body form .pesquisa .itens-pesquisa .item-pesquisa:nth-last-child(1) {
   border-radius: 0px 0 7px 7px;
-  border-bottom: none;
+  border-bottom: 1px solid #121212;
 }
 
 body form .pesquisa .itens-pesquisa .sem-resultado:hover {
@@ -102,14 +102,17 @@ body .pokemon-info {
 }
 
 body .pokemon-info .info-esq {
-  background: #3e3a3c;
-  border-radius: 7px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #c7c7c7;
+  background: radial-gradient(circle, #c7c7c7 20%, rgba(235, 235, 235, 0) 60%);
 }
 
 body .pokemon-info .info-esq img {
@@ -129,9 +132,10 @@ body .pokemon-info .info-dir .sessao-info .tipos {
 }
 
 body .pokemon-info .info-dir .sessao-info .tipos .tipo {
-  background: lightcoral;
-  padding: 5px 10px;
+  background: #15ad15;
+  padding: 5px 14px;
   margin-right: 10px;
   border-radius: 7px;
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */

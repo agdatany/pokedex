@@ -1,4 +1,6 @@
-$corFundo: #2c292a;
+$branco: #ebebeb;
+$vermelho: #d21819;
+$preto: #121212;
 
 *, *:after, *:before{
     box-sizing: border-box;
@@ -8,8 +10,8 @@ $corFundo: #2c292a;
 }
 
 body{
-    background: $corFundo;
-    color: white;
+    background: $branco;
+    color: $preto;
     font-size: 1.5em;
     text-align: center;
     img#logo{
@@ -28,7 +30,7 @@ body{
                     height: 45px;
                     border-radius: 7px 0 0 7px;
                     outline: none;
-                    border: 1px solid black;
+                    border: 1px solid $preto;
                     border-right: none;
                     font-weight: 300;
                     font-size: 0.8em;
@@ -39,10 +41,10 @@ body{
                     width: 45px;
                     height: 45px;
                     padding: 10px;
-                    color: white;
-                    background: red;
+                    color: $branco;
+                    background: $vermelho;
                     font-size: 17px;
-                    border: 1px solid black;
+                    border: 1px solid $preto;
                     border-left: none;
                     border-radius: 0 7px 7px 0;
                     cursor: pointer;
@@ -53,12 +55,12 @@ body{
                 width: 70%;
                 max-width: 500px;
                 .item-pesquisa{
-                    border: 1px solid black;
+                    border: 1px solid $preto;
                     border-top: none;
                     border-bottom: none;
                     background: white;
                     padding: 5px;
-                    color: black;
+                    color: $preto;
                     font-weight: 300;
                     font-size: 0.8em;
                     &:hover{
@@ -66,7 +68,7 @@ body{
                     }
                     &:nth-last-child(1){
                         border-radius: 0px 0 7px 7px;
-                        border-bottom: none;
+                        border-bottom: 1px solid $preto;
                     }
                 }
                 .sem-resultado{
@@ -86,10 +88,11 @@ body{
         flex-wrap: wrap;
         padding: 2%;
         .info-esq{
-            background: lighten($corFundo, 7);
-            border-radius: 7px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            background: rgb(199,199,199);
+            background: radial-gradient(circle, rgba(199,199,199,1) 20%, rgba(235,235,235,0) 60%);
             img{
                 height: 80%;
             }
@@ -102,10 +105,11 @@ body{
                     display: flex;
                     margin: 3px;
                     .tipo{
-                        background: lightcoral;
-                        padding: 5px 10px;
+                        background: rgb(21, 173, 21);
+                        padding: 5px 14px;
                         margin-right: 10px;
                         border-radius: 7px;
+                        color: white;
                     }
                 }
             }

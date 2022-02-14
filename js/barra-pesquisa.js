@@ -8,7 +8,9 @@ async function pegarListaPokemons(){
             todosPokemons = data;
 
             for(var i = 0; i < data.count; i++){
-                listaPokemons.push(data.results[i].name);
+                if(data.results[i].url.split('/')[data.results[i].url.split('/').length - 2] < 10000){
+                    listaPokemons.push(data.results[i].name);
+                }
             }
         })
         .catch(erro => console.log(erro));
@@ -17,6 +19,15 @@ async function pegarListaPokemons(){
 async function pegarPokemonInfo(pokemon){
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`);
     return response.json();
+}
+
+async function pegarSuperEfetivo(url){
+    const response = await fetch(url);
+    return response.json();
+}
+
+async function pegarFracoContra(tipoPokemon){
+
 }
 
 function capitalize(string) {
@@ -111,6 +122,44 @@ $('#btnSearchPokemon').on('click', function(e){
 $('.pesquisa').on('click', async function(event){
     if($(event.target).hasClass('item-pesquisa')){
         let infoPokemon = await pegarPokemonInfo($(event.target).text());
+
+        // Setando imagem
+        $('#foto-pokemon').attr('src', infoPokemon.sprites.other["official-artwork"].front_default);
+
+        // Setando nome
+        $('#nome-pokemon').text(capitalize(infoPokemon.name));
+
+        // Pegando o tipo, super efetivo e fraqueza do pokemon
+        $('.tipos-pokemon .tipos .tipo').remove();
+        $('.superefetivo .tipos .tipo').remove();
+        $('.fraco-contra .tipos .tipo').remove();
+        
+        let superEfetivos = [];
+        let fracoContra = [];
+
+        for(var i = 0; i < infoPokemon.types.length; i++){
+            let tipo = await pegarSuperEfetivo(infoPokemon.types[i].type.url);
+
+            $('.tipos-pokemon .tipos').append(`<div class="tipo">${capitalize(tipo.name)}</div>`);
+
+            for(var index = 0; index < tipo.damage_relations.double_damage_to.length; index++){
+                let tipoSuperEfetivo = tipo.damage_relations.double_damage_to[index].name;
+
+                if(!superEfetivos.includes(tipoSuperEfetivo)){
+                    superEfetivos.push(tipoSuperEfetivo);
+                    $('.superefetivo .tipos').append(`<div class="tipo">${capitalize(tipoSuperEfetivo)}</div>`);
+                }
+            }
+            
+            for(var index = 0; index < tipo.damage_relations.double_damage_from.length; index++){
+                let tipoFracoContra = tipo.damage_relations.double_damage_from[index].name;
+
+                if(!fracoContra.includes(tipoFracoContra)){
+                    fracoContra.push(tipoFracoContra);
+                    $('.fraco-contra .tipos').append(`<div class="tipo">${capitalize(tipoFracoContra)}</div>`);
+                }
+            }
+        }
     }
 });
 
