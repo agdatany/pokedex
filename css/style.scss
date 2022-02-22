@@ -13,104 +13,161 @@ body{
     background: $branco;
     color: $preto;
     font-size: 1.5em;
+    overflow-x: hidden;
     text-align: center;
-    img#logo{
-        height: 230px;
-    }
-    form{
-        .pesquisa{
-            width: 70%;
-            margin: 0 auto;
-            max-width: 500px;
-            .barra-de-pesquisa{
-                margin: 0 auto;
-                display: flex;
-                #inputSearchPokemon{
-                    width: calc(100% - 45px);
-                    height: 45px;
-                    border-radius: 7px 0 0 7px;
-                    outline: none;
-                    border: 1px solid $preto;
-                    border-right: none;
-                    font-weight: 300;
-                    font-size: 0.8em;
-                    padding: 10px;
-                    max-width: 500px;
-                }
-                #btnSearchPokemon{
-                    width: 45px;
-                    height: 45px;
-                    padding: 10px;
-                    color: $branco;
-                    background: $vermelho;
-                    font-size: 17px;
-                    border: 1px solid $preto;
-                    border-left: none;
-                    border-radius: 0 7px 7px 0;
-                    cursor: pointer;
-                }
-            }
-            .itens-pesquisa{
-                position: absolute;
-                width: 70%;
-                max-width: 500px;
-                .item-pesquisa{
-                    border: 1px solid $preto;
-                    border-top: none;
-                    border-bottom: none;
-                    background: white;
-                    padding: 5px;
-                    color: $preto;
-                    font-weight: 300;
-                    font-size: 0.8em;
-                    &:hover{
-                        background: darken(white, 7);
-                    }
-                    &:nth-last-child(1){
-                        border-radius: 0px 0 7px 7px;
-                        border-bottom: 1px solid $preto;
-                    }
-                }
-                .sem-resultado{
-                    &:hover{
-                        background: white;
-                    }
-                }
-            }
-        }
-    }
-    .pokemon-info{
+}
+
+img#logo{
+    height: 230px;
+}
+form{
+    .pesquisa{
         width: 70%;
         margin: 0 auto;
-        border-radius: 20px;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        padding: 2%;
-        .info-esq{
+        max-width: 500px;
+        .barra-de-pesquisa{
+            margin: 0 auto;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgb(199,199,199);
-            background: radial-gradient(circle, rgba(199,199,199,1) 20%, rgba(235,235,235,0) 60%);
-            img{
-                height: 80%;
+            #inputSearchPokemon{
+                width: calc(100% - 45px);
+                height: 45px;
+                border-radius: 7px 0 0 7px;
+                outline: none;
+                border: 1px solid $preto;
+                border-right: none;
+                font-weight: 300;
+                font-size: 0.8em;
+                padding: 10px;
+                max-width: 500px;
+            }
+            #btnSearchPokemon{
+                width: 45px;
+                height: 45px;
+                padding: 10px;
+                color: $branco;
+                background: $vermelho;
+                font-size: 17px;
+                border: 1px solid $preto;
+                border-left: none;
+                border-radius: 0 7px 7px 0;
+                cursor: pointer;
             }
         }
-        .info-dir{
-            .sessao-info{
-                text-align: left;
-                margin-bottom: 30px;
-                .tipos{
-                    display: flex;
-                    margin: 3px;
-                    .tipo{
-                        background: rgb(21, 173, 21);
-                        padding: 5px 14px;
-                        margin-right: 10px;
-                        border-radius: 7px;
-                        color: white;
-                    }
+        .itens-pesquisa{
+            position: absolute;
+            width: 70%;
+            max-width: 500px;
+            z-index: 100;
+            .item-pesquisa{
+                border: 1px solid $preto;
+                border-top: none;
+                border-bottom: none;
+                background: white;
+                padding: 5px;
+                color: $preto;
+                font-weight: 300;
+                font-size: 0.8em;
+                &:hover{
+                    background: darken(white, 7);
+                }
+                &:nth-last-child(1){
+                    border-radius: 0px 0 7px 7px;
+                    border-bottom: 1px solid $preto;
+                }
+            }
+            .sem-resultado{
+                &:hover{
+                    background: white;
+                }
+            }
+        }
+    }
+}
+.pokemon-info{
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .info-esq{
+        width: 50%;
+        min-width: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgb(199,199,199);
+        background: radial-gradient(circle, rgba(199,199,199,1) 20%, rgba(235,235,235,0) 60%);
+        img{
+            height: 80%;
+        }
+    }
+    .info-dir{
+        width: 50%;
+        .sessao-info{
+            text-align: left;
+            margin-bottom: 30px;
+            .tipos{
+                display: flex;
+                margin: 3px;
+                .tipo{
+                    background: rgb(21, 173, 21);
+                    padding: 5px 14px;
+                    margin-right: 10px;
+                    border-radius: 7px;
+                    color: white;
+                }
+            }
+        }
+        .basic-info{
+            color: white;
+            height: 100px;
+            width: 100%;
+            clear: both;
+            padding-left: 3px;
+            position: relative;
+            background: $vermelho;
+            z-index: 1;
+            float: left;
+            display: flex;
+            align-items: center;
+            &:after{
+                position: absolute;
+                content: '';
+                background: inherit;
+                z-index: -3;
+                height: 100%;
+                width: 60%;
+                top: 0px;
+                left: 0px;
+                transform-origin: bottom left;
+                transform: skewX(22deg);
+            }
+            h1{
+                margin-left: 20px;
+            }
+            .numero-pokemon{
+                color: white;
+                height: 90px;
+                width: 220px;
+                clear: both;
+                padding-left: calc(132px / 3);
+                position: relative;
+                background: $preto;
+                float: left;
+                display: flex;
+                align-items: center;
+                font-size: 1.4em;
+                &:after{
+                    position: absolute;
+                    content: '';
+                    background: inherit;
+                    z-index: -1;
+                    height: 100%;
+                    width: 60%;
+                    top: 0px;
+                    left: 0px;
+                    transform-origin: bottom left;
+                    transform: skewX(22deg);
                 }
             }
         }
