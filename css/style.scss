@@ -90,13 +90,12 @@ form{
     flex-wrap: wrap;
     justify-content: center;
     .info-esq{
-        width: 50%;
         min-width: 500px;
         display: flex;
         align-items: center;
         justify-content: center;
         background: rgb(199,199,199);
-        background: radial-gradient(circle, rgba(199,199,199,1) 20%, rgba(235,235,235,0) 60%);
+        background: radial-gradient(circle, rgba(199,199,199,1) 30%, rgba(235,235,235,0) 60%);
         img{
             height: 80%;
         }
@@ -145,9 +144,9 @@ form{
             h1{
                 margin-left: 20px;
             }
-            .numero-pokemon{
+            #numero-pokemon{
                 color: white;
-                height: 90px;
+                height: 80px;
                 width: 220px;
                 clear: both;
                 padding-left: calc(132px / 3);

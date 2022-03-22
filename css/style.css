@@ -102,7 +102,6 @@ form .pesquisa .itens-pesquisa .sem-resultado:hover {
 }
 
 .pokemon-info .info-esq {
-  width: 50%;
   min-width: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -114,7 +113,7 @@ form .pesquisa .itens-pesquisa .sem-resultado:hover {
       -ms-flex-pack: center;
           justify-content: center;
   background: #c7c7c7;
-  background: radial-gradient(circle, #c7c7c7 20%, rgba(235, 235, 235, 0) 60%);
+  background: radial-gradient(circle, #c7c7c7 30%, rgba(235, 235, 235, 0) 60%);
 }
 
 .pokemon-info .info-esq img {
@@ -182,9 +181,9 @@ form .pesquisa .itens-pesquisa .sem-resultado:hover {
   margin-left: 20px;
 }
 
-.pokemon-info .info-dir .basic-info .numero-pokemon {
+.pokemon-info .info-dir .basic-info #numero-pokemon {
   color: white;
-  height: 90px;
+  height: 80px;
   width: 220px;
   clear: both;
   padding-left: calc(132px / 3);
@@ -200,7 +199,7 @@ form .pesquisa .itens-pesquisa .sem-resultado:hover {
   font-size: 1.4em;
 }
 
-.pokemon-info .info-dir .basic-info .numero-pokemon:after {
+.pokemon-info .info-dir .basic-info #numero-pokemon:after {
   position: absolute;
   content: '';
   background: inherit;

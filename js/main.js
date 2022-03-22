@@ -118,6 +118,17 @@ $('#btnSearchPokemon').on('click', function(e){
     e.preventDefault();
 });
 
+function completaZeroEsquerda(numero){
+    numero = String(numero);
+    if(numero.length < 3){
+        for (let index = 0; index <= 3 - numero.length; index++){
+            numero = [numero.slice(0, 0), '0', numero.slice(0)].join('');
+        }
+    }
+
+    return numero;
+}
+
 // Clicou em um pokemon da barra de pesquisa
 $('.pesquisa').on('click', async function(event){
     if($(event.target).hasClass('item-pesquisa')){
@@ -126,8 +137,9 @@ $('.pesquisa').on('click', async function(event){
         // Setando imagem
         $('#foto-pokemon').attr('src', infoPokemon.sprites.other["official-artwork"].front_default);
 
-        // Setando nome
+        // Setando nome e número
         $('#nome-pokemon').text(capitalize(infoPokemon.name));
+        $('#numero-pokemon').text(`No. ${completaZeroEsquerda(infoPokemon.id)}`);
 
         // Pegando o tipo, super efetivo e fraqueza do pokemon
         $('.tipos-pokemon .tipos .tipo').remove();
