@@ -7,7 +7,7 @@ async function pegarListaPokemons(){
         .then(data => {
             todosPokemons = data;
 
-            for(var i = 0; i < data.count; i++){
+            for(let i = 0; i < data.count; i++){
                 if(data.results[i].url.split('/')[data.results[i].url.split('/').length - 2] < 10000){
                     listaPokemons.push(data.results[i].name);
                 }
@@ -24,6 +24,49 @@ async function pegarPokemonInfo(pokemon){
 async function pegarSuperEfetivo(url){
     const response = await fetch(url);
     return response.json();
+}
+
+async function inserirInfos(nomePokemon){
+    let infoPokemon = await pegarPokemonInfo(nomePokemon);
+
+    // Setando imagem
+    $('#foto-pokemon').attr('src', infoPokemon.sprites.other["official-artwork"].front_default);
+
+    // Setando nome e número
+    $('#nome-pokemon').text(capitalize(infoPokemon.species.name));
+    $('#numero-pokemon').text(`No. ${completaZeroEsquerda(infoPokemon.id)}`);
+
+    // Pegando o tipo, super efetivo e fraqueza do pokemon
+    $('.tipos-pokemon .tipos .tipo').remove();
+    $('.superefetivo .tipos .tipo').remove();
+    $('.fraco-contra .tipos .tipo').remove();
+    
+    let superEfetivos = [];
+    let fracoContra = [];
+
+    for(let i = 0; i < infoPokemon.types.length; i++){
+        let tipo = await pegarSuperEfetivo(infoPokemon.types[i].type.url);
+
+        $('.tipos-pokemon .tipos').append(`<div class="tipo tipo-${tipo.name}">${capitalize(tipo.name)}</div>`);
+
+        for(let index = 0; index < tipo.damage_relations.double_damage_to.length; index++){
+            let tipoSuperEfetivo = tipo.damage_relations.double_damage_to[index].name;
+
+            if(!superEfetivos.includes(tipoSuperEfetivo)){
+                superEfetivos.push(tipoSuperEfetivo);
+                $('.superefetivo .tipos').append(`<div class="tipo tipo-${tipoSuperEfetivo}">${capitalize(tipoSuperEfetivo)}</div>`);
+            }
+        }
+        
+        for(let index = 0; index < tipo.damage_relations.double_damage_from.length; index++){
+            let tipoFracoContra = tipo.damage_relations.double_damage_from[index].name;
+
+            if(!fracoContra.includes(tipoFracoContra)){
+                fracoContra.push(tipoFracoContra);
+                $('.fraco-contra .tipos').append(`<div class="tipo tipo-${tipoFracoContra}">${capitalize(tipoFracoContra)}</div>`);
+            }
+        }
+    }
 }
 
 async function pegarFracoContra(tipoPokemon){
@@ -48,9 +91,9 @@ function limparPesquisa(){
     $('.item-pesquisa').remove();
 }
 
-function sortearNumeros(){
+function sortearNumeros(quantidade){
     let numeros_aleatorios = [];
-    for(var i = 0; i < 5; i++){
+    for(let i = 0; i < quantidade; i++){
         numeros_aleatorios.push(Math.floor(Math.random() * (listaPokemons.length)));
     }
 
@@ -72,9 +115,9 @@ $('#inputSearchPokemon').on('click', async function(){
     $('.barra-de-pesquisa').after('<div class="itens-pesquisa"></div>');
 
     // Colocando as divs da barra da pesquisa
-    var numeros_aleatorios = sortearNumeros();
+    let numeros_aleatorios = sortearNumeros(5);
 
-    for(var i = 0; i < 5; i++){
+    for(let i = 0; i < 5; i++){
         $('.itens-pesquisa').append(`<div class="item-pesquisa">${capitalize(listaPokemons[numeros_aleatorios[i]])}</div>`);
     }
     
@@ -83,14 +126,14 @@ $('#inputSearchPokemon').on('click', async function(){
 
 // Evento de teclado na barra de pesquisa
 $('#inputSearchPokemon').on('keyup', function(){
-    var listaFiltrada = [];
+    let listaFiltrada = [];
     let inputFiltro = $('#inputSearchPokemon').val();
 
     limparPesquisa();
 
     if(inputFiltro.length == 0){
-        var numeros_aleatorios = sortearNumeros();
-        for(var i = 0; i < 5; i++){
+        let numeros_aleatorios = sortearNumeros(5);
+        for(let i = 0; i < 5; i++){
             $('.itens-pesquisa').append(`<div class="item-pesquisa">${capitalize(listaPokemons[numeros_aleatorios[i]])}</div>`);
         }
         return false;
@@ -106,7 +149,7 @@ $('#inputSearchPokemon').on('keyup', function(){
         $('.itens-pesquisa').append(`<div class="item-pesquisa sem-resultado">Nenhum resultado encontrado</div>`);
     }
     
-    for(var i = 1; i < 6; i++){
+    for(let i = 1; i < 6; i++){
         if(i <= listaFiltrada.length){
             $('.itens-pesquisa').append(`<div class="item-pesquisa">${listaFiltrada[i - 1]}</div>`);
         }
@@ -132,46 +175,7 @@ function completaZeroEsquerda(numero){
 // Clicou em um pokemon da barra de pesquisa
 $('.pesquisa').on('click', async function(event){
     if($(event.target).hasClass('item-pesquisa')){
-        let infoPokemon = await pegarPokemonInfo($(event.target).text());
-
-        // Setando imagem
-        $('#foto-pokemon').attr('src', infoPokemon.sprites.other["official-artwork"].front_default);
-
-        // Setando nome e número
-        $('#nome-pokemon').text(capitalize(infoPokemon.name));
-        $('#numero-pokemon').text(`No. ${completaZeroEsquerda(infoPokemon.id)}`);
-
-        // Pegando o tipo, super efetivo e fraqueza do pokemon
-        $('.tipos-pokemon .tipos .tipo').remove();
-        $('.superefetivo .tipos .tipo').remove();
-        $('.fraco-contra .tipos .tipo').remove();
-        
-        let superEfetivos = [];
-        let fracoContra = [];
-
-        for(var i = 0; i < infoPokemon.types.length; i++){
-            let tipo = await pegarSuperEfetivo(infoPokemon.types[i].type.url);
-
-            $('.tipos-pokemon .tipos').append(`<div class="tipo">${capitalize(tipo.name)}</div>`);
-
-            for(var index = 0; index < tipo.damage_relations.double_damage_to.length; index++){
-                let tipoSuperEfetivo = tipo.damage_relations.double_damage_to[index].name;
-
-                if(!superEfetivos.includes(tipoSuperEfetivo)){
-                    superEfetivos.push(tipoSuperEfetivo);
-                    $('.superefetivo .tipos').append(`<div class="tipo">${capitalize(tipoSuperEfetivo)}</div>`);
-                }
-            }
-            
-            for(var index = 0; index < tipo.damage_relations.double_damage_from.length; index++){
-                let tipoFracoContra = tipo.damage_relations.double_damage_from[index].name;
-
-                if(!fracoContra.includes(tipoFracoContra)){
-                    fracoContra.push(tipoFracoContra);
-                    $('.fraco-contra .tipos').append(`<div class="tipo">${capitalize(tipoFracoContra)}</div>`);
-                }
-            }
-        }
+        inserirInfos($(event.target).text());
     }
 });
 
@@ -183,5 +187,16 @@ $(document).on('click', function(event){
         fecharPesquisa();
     
         barraAberta = false;
+    }
+});
+
+// Pegando informação no início
+$(document).ready(async function(){
+    if(listaPokemons.length == 0){
+        await pegarListaPokemons();
+        
+        let numeros_aleatorios = sortearNumeros(1);
+
+        await inserirInfos(listaPokemons[numeros_aleatorios[0]]);
     }
 });

@@ -6,7 +6,7 @@ $preto: #121212;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Helvetica, sans-serif;
 }
 
 body{
@@ -90,14 +90,18 @@ form{
     flex-wrap: wrap;
     justify-content: center;
     .info-esq{
+        width: 50%;
         min-width: 500px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgb(199,199,199);
-        background: radial-gradient(circle, rgba(199,199,199,1) 30%, rgba(235,235,235,0) 60%);
-        img{
-            height: 80%;
+        .imagem{
+            width: 580px;
+            background: rgb(199,199,199);
+            background: radial-gradient(circle, rgba(199,199,199,1) 30%, rgba(235,235,235,0) 60%);
+            img{
+                height: 80%;
+            }
         }
     }
     .info-dir{
@@ -107,68 +111,175 @@ form{
             margin-bottom: 30px;
             .tipos{
                 display: flex;
+                flex-wrap: wrap;
                 margin: 3px;
                 .tipo{
-                    background: rgb(21, 173, 21);
                     padding: 5px 14px;
                     margin-right: 10px;
+                    margin-top: 10px;
                     border-radius: 7px;
                     color: white;
                 }
             }
         }
+        .info-pokemon{
+            margin-left: 110px;
+            h3{
+                &:after{
+                    content: '';
+                    width: 100%;
+                    height: 2px;
+                    margin-top: 4px;
+                    background: black;
+                    display: block;
+                }
+            }
+        }
         .basic-info{
-            color: white;
-            height: 100px;
             width: 100%;
-            clear: both;
-            padding-left: 3px;
-            position: relative;
-            background: $vermelho;
-            z-index: 1;
-            float: left;
+            background-image: url(../images/parte-vermelha.svg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 5px;
+            padding-left: 10px;
+            color: white;
             display: flex;
             align-items: center;
-            &:after{
-                position: absolute;
-                content: '';
-                background: inherit;
-                z-index: -3;
-                height: 100%;
-                width: 60%;
-                top: 0px;
-                left: 0px;
-                transform-origin: bottom left;
-                transform: skewX(22deg);
-            }
-            h1{
-                margin-left: 20px;
-            }
             #numero-pokemon{
-                color: white;
-                height: 80px;
-                width: 220px;
-                clear: both;
-                padding-left: calc(132px / 3);
-                position: relative;
-                background: $preto;
-                float: left;
+                width: 230px;
+                height: 90px;
+                font-size: 1.2em;
+                padding-left: 30px;
                 display: flex;
+                justify-content: center;
                 align-items: center;
-                font-size: 1.4em;
-                &:after{
-                    position: absolute;
-                    content: '';
-                    background: inherit;
-                    z-index: -1;
-                    height: 100%;
-                    width: 60%;
-                    top: 0px;
-                    left: 0px;
-                    transform-origin: bottom left;
-                    transform: skewX(22deg);
+                background-image: url(../images/parte-preta.svg);
+                background-repeat: no-repeat;
+            }
+            #nome-pokemon{
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .pokemon-info{
+        .info-dir{
+            width: 100%;
+            .info-pokemon{
+                margin-left: 0;
+            }
+            .sessao-info{
+                text-align: center;
+                .tipos{
+                    justify-content: center;
+                    margin: 0;
+                }
+            }
+            .basic-info{
+                justify-content: center;
+                height: 100px;
+                background: $vermelho;
+                #numero-pokemon{
+                    width: 180px;
+                    height: 80px;
+                    border-radius: 7px;
+                    padding-left: 0;
+                    background: $preto;
                 }
             }
         }
     }
+}
+
+// Cores dos tipos dos pokémons!
+.tipo-normal{
+    background: #A8A77A;
+    border: 2px solid darken(#A8A77A, 10);
+}
+
+.tipo-fire{
+    background: #EE8130;
+    border: 2px solid darken(#EE8130, 10);
+}
+
+.tipo-water{
+    background: #6390F0;
+    border: 2px solid darken(#6390F0, 10);
+}
+
+.tipo-electric{
+    background: #F7D02C;
+    border: 2px solid darken(#F7D02C, 10);
+}
+
+.tipo-grass{
+    background: #7AC74C;
+    border: 2px solid darken(#7AC74C, 10);
+}
+
+.tipo-ice{
+    background: #96D9D6;
+    border: 2px solid darken(#96D9D6, 10);
+}
+
+.tipo-fighting{
+    background: #C22E28;
+    border: 2px solid darken(#C22E28, 10);
+}
+
+.tipo-poison{
+    background: #A33EA1;
+    border: 2px solid darken(#A33EA1, 10);
+}
+
+.tipo-ground{
+    background: #E2BF65;
+    border: 2px solid darken(#E2BF65, 10);
+}
+
+.tipo-flying{
+    background: #A98FF3;
+    border: 2px solid darken(#A98FF3, 10);
+}
+
+.tipo-psychic{
+    background: #F95587;
+    border: 2px solid darken(#F95587, 10);
+}
+
+.tipo-bug{
+    background: #A6B91A;
+    border: 2px solid darken(#A6B91A, 10);
+}
+
+.tipo-rock{
+    background: #B6A136;
+    border: 2px solid darken(#B6A136, 10);
+}
+
+.tipo-ghost{
+    background: #735797;
+    border: 2px solid darken(#735797, 10);
+}
+
+.tipo-dragon{
+    background: #6F35FC;
+    border: 2px solid darken(#6F35FC, 10);
+}
+
+.tipo-dark{
+    background: #705746;
+    border: 2px solid darken(#705746, 10);
+}
+
+.tipo-steel{
+    background: #B7B7CE;
+    border: 2px solid darken(#B7B7CE, 10);
+}
+
+.tipo-fairy{
+    background: #D685AD;
+    border: 2px solid darken(#D685AD, 10);
 }
